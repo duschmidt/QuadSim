@@ -4,36 +4,18 @@ class Arduino:
     Any SET functions will NOT be translated into the real application,
     but are present for use in simulation to present the sensors with data.
     """
+
+    _sensZRange = 0
+
     def __init__(self):
         
         return
-    
-    
-    def getXAcceleration(self):
-        """
-        Read X acceleration in the world cordinate system
-        This is a computed value based on sensors
-        """
-        
-        return
-    
-    def getYAcceleration(self):
-        """
-        Read Y acceleration world cordinate system
-        This is a computed value based on sensors
-        """
-        return
-    
-    def getZAcceleration(self):
-        """
-        Read Z acceleration world cordinate system
-        This is a computed value based on sensors
-        """
-        return
 
-    def getZDistance(self):
+
+    def getResponse(self):
         """
-        Read Z distance sensor
+        Get Ardiuno output based on current vehicle stateread.
+        this function maps sensor data -> modified User Input
         """
         return
 
@@ -43,12 +25,12 @@ class Arduino:
     --------------------------------------------------------------------------------
     """
 
-    def setSensorData(self):
+    def setSensorData(self, vehicleState):
         """
-        Updates all the "real" data that the sensors will read.  This data will be used 
-        by the ardiuno to calculate its precieved measurements.
-        INPUTS: data
+        Accepts a vehicle state object and uses it's parameters to update this Arudino's sensors as necessary
+        INPUTS: vehicleState instance of VehicleState
         """
+        _sensZRange = vehicleState._position[2]
         return
     
     def setUserInput(self):
@@ -58,4 +40,5 @@ class Arduino:
         remote control in the real QuadCopter
         """
         return
-    
+
+
